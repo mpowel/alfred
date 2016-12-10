@@ -1,20 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @mpowel
- Unwatch 8
-  Star 2
-  Fork 16 daraghbyrne/onlineprototypes2016repo Private
- Code  Issues 0  Pull requests 14  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathonlineprototypes2016repo/code-samples/slack-template-app/app.rb
-7a29d21  10 days ago
- daraghbyrne Code samples week 6
-0 contributors
-RawBlameHistory     
-317 lines (221 sloc)  8.83 KB
 require "sinatra"
 require 'sinatra/activerecord'
 require 'rake'
