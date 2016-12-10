@@ -25,6 +25,27 @@ module Sinatra
       elsif event.formatted_text.starts_with? "thank"
         client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
 
+      elsif event.formatted_text == "add"
+        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and i'll add them for you.", as_user: true)
+        
+      elsif event.formatted_text.starts_with? "add"
+        
+        # assuming we get something like this: 
+        # add joe bloggs
+        
+        contact_name = event.formatted_text.gsub( "add", "" ).strip
+        # i've removeed the add prefix and cleaned up the string
+        # i now have a formatted name 
+        
+        # i'm creating a new object in my database with two pieces of info 
+        contact = Contact.create( team_id: event.team_id, name: contact_name )
+        #...
+        # I'm  now storing/saving/updating it in the database
+        contact.save
+
+        client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
+        
+
       #   ... 
       # add additional commands here... 
                              
