@@ -44,8 +44,41 @@ module Sinatra
         contact.save
 
         client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is _#{ contact.name }_'s gender? Are the a `male` or a `female`. ", as_user: true)
+      
+      elsif event.formatted_text.starts_with? "male"
         
+        contact = Contact.all.last
+        contact.gender = "male"
+        contact.save!
+        
+        client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a man. I've updated that. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is his email? ", as_user: true)
+        
+        
+      elsif event.formatted_text.starts_with? "female"
+      
+        contact = Contact.all.last
+        contact.gender = "female"
+        contact.save!
+        
+        client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a woman. I've updated that. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is her email? ", as_user: true)
+        
+        
+      elsif is_email_address event.formatted_text
+        
+        contact = Contact.all.last
+        contact.email = event.formatted_text
+        contact.save!
+        
+        client.chat_postMessage(channel: event.channel, text: "I've associated the email `#{contact.email}` with _#{ contact.name }_. ", as_user: true)
 
+        if contact.gender == "male"
+          client.chat_postMessage(channel: event.channel, text: "What's his phone number? ", as_user: true)
+        else
+          client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
+        end
       #   ... 
       # add additional commands here... 
                              
@@ -62,6 +95,10 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
+    
+    def is_email_address str
+      return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+    end
     
     def get_user_name client, event
       # calls users_info on slack
