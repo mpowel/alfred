@@ -315,5 +315,3 @@ def respond_to_slack_event json
   event_to_action client, event 
   
 end
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
