@@ -11,4 +11,3 @@ class Event < ActiveRecord::Base
 
   
 end
-Contact GitHub API Training Shop Blog About
