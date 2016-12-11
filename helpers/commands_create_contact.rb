@@ -81,9 +81,9 @@ module Sinatra
         
       elsif event.formatted_text.starts_with? "view"
              # print the list
-             all_contacts = Contact.all
+             contact = Contact.all
              contact_list = ""
-             all_contacts.each_with_index do |item, index|
+             contact.each_with_index do |item, index|
              contact_list += "#{ index+ 1 }. #{ item.contact.name } \n"
              end
 
