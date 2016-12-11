@@ -17,25 +17,26 @@ module Sinatra
       if event.formatted_text.include? "help"
         client.chat_postMessage(channel: event.channel, text: "It works", as_user: true)
       end
+      
       # View contacts
-     #  if event.formatted_text.starts_with? "view"
-     # # print the list
-     #        contact_list = Contact.all
-     #        contact = ""
-     #        contact_list.each_with_index do |item, index|
-     #        contact += "#{ index+ 1 }. #{ item.name } \n"
-     #        end
-     # client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
-     # #client.chat_postMessage(channel: event.channel, text: "Type 'update' followed by the number associated with the contact you'd like to update or `add [name]` to add a new contact.", as_user: true)
-     # #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
-     #     end
+      elsif event.formatted_text.starts_with? "view"
+     # print the list
+            contact_list = Contact.all
+            contact = ""
+            contact_list.each_with_index do |item, index|
+            contact += "#{ index+ 1 }. #{ item.name } \n"
+            end
+            client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
+   
+     #client.chat_postMessage(channel: event.channel, text: "Type 'update' followed by the number associated with the contact you'd like to update or `add [name]` to add a new contact.", as_user: true)
+     #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
      #  # Delete all
      #
      #  # Delete specific item
      #
      #  # Edit specific item
-     #
-     #  end
+         end
+     
 
     end
 
