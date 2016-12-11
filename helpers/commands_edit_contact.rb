@@ -35,7 +35,7 @@ module Sinatra
         
        elsif event.formatted_text.starts_with? "edit"
          contact_id = event.formatted_text.gsub( "edit", "" ).strip
-         input_index = contact_id[0].to_i - 1
+         input_index = contact_id.to_i - 1 #may need to be in parentheses (contact_id.to_i) - 1
          all_contacts = Contact.order(:id)
 
          client.chat_postMessage(channel: event.channel, text: "I'd be happy to update _#{all_contacts[input_index].name }_.\n Here's what I have stored\n Name: #{all_contacts[input_index].name }\n Gender: #{all_contacts[input_index].gender }\n Email: #{all_contacts[input_index].email }\n Phone: #{all_contacts[input_index].phone }\n", as_user: true)
@@ -120,7 +120,13 @@ module Sinatra
        
      #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
      #  # Delete all
-     #
+     # elsif event.formatted_text == "delete all"
+ #       Contact.destroy_all
+ #       #create one step that's a warning and prompts yes
+ #       client.chat_postMessage(channel: event.channel, text: "I have deleted your entire list of contacts.", as_user: true)
+ #
+ #       return true
+
      #  # Delete specific item
      #
      #  # Edit specific item
