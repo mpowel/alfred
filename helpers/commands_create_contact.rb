@@ -34,7 +34,7 @@ module Sinatra
               contact_list.each_with_index do |item, index|
               contact += "#{ index+ 1 }. #{ item.name } \n"
               end
-       client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact_list  , as_user: true )
+       client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
 
 
       elsif event.formatted_text == "add"
