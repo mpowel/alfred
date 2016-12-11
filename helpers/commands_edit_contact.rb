@@ -18,7 +18,7 @@ module Sinatra
       if ["you", "always"].any? { |z| event.formatted_text.starts_with? z }  #try using another letter besides w
         client.chat_postMessage(channel: event.channel, text: "No no no!", as_user: true)
       
-      else event.formatted_text.include? "hate"  
+      elsif event.formatted_text.include? "hate"  
         client.chat_postMessage(channel: event.channel, text: "No no no!", as_user: true)
         
       # else
