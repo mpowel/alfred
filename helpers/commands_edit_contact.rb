@@ -16,7 +16,7 @@ module Sinatra
 
       if event.formatted_text.include? "help"
         client.chat_postMessage(channel: event.channel, text: "It works", as_user: true)
-      
+       return true
       # View contacts
       elsif event.formatted_text.starts_with? "view"
      # print the list
@@ -27,7 +27,7 @@ module Sinatra
             end
             
             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
-   
+       return true
      #client.chat_postMessage(channel: event.channel, text: "Type 'update' followed by the number associated with the contact you'd like to update or `add [name]` to add a new contact.", as_user: true)
      #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
      #  # Delete all
@@ -35,6 +35,10 @@ module Sinatra
      #  # Delete specific item
      #
      #  # Edit specific item
+
+     else
+       return false
+     
          end
      
        

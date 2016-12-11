@@ -16,6 +16,7 @@ module Sinatra
         
       if event.formatted_text.starts_with? "thank"
       client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
+       return true
 ## How do I generate a random list of thank yous?      
 
 #         # Handle the Help commands
@@ -31,6 +32,8 @@ module Sinatra
       #   # not understood or an error
       #   client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
       #
+      else
+       return false
       end
       
     end

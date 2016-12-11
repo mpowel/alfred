@@ -331,9 +331,10 @@ def respond_to_slack_event json
   
   client = team.get_client
   
-  event_to_action client, event 
-  create_contact client, event 
-  view_and_edit client, event
+  if not   event_to_action client, event 
+  if not   view_and_edit client, event
+           create_contact client, event 
+
   # you_always_do_this client, event
   
 end
