@@ -84,10 +84,10 @@ module Sinatra
              all_contacts = Contact.all
              contact_list = ""
              all_contacts.each_with_index do |item, index|
-             contact_list += "#{ index+ 1 }. #{ contact.name } \n"
+             contact_list += "#{ index+ 1 }. #{ item.contact.name } \n"
              end
 
-             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts." + contact_list  , as_user: true )
+             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact_list  , as_user: true )
 
     
         # elsif event.formatted_text.starts_with? "phone"
