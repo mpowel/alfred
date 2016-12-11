@@ -43,7 +43,7 @@ module Sinatra
         client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
 
       elsif event.formatted_text == "add"
-        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and i'll add them for you."
+        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you."
         , as_user: true)
         
       elsif event.formatted_text.starts_with? "add"
