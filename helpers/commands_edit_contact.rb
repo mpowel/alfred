@@ -27,31 +27,43 @@ module Sinatra
             end
             
             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
-            client.chat_postMessage(channel: event.channel, text: "Type 'edit' to update a contact.*\n" + contact  , as_user: true )
+            client.chat_postMessage(channel: event.channel, text: "Type 'edit' followed by a number to edit a contact from this list.*\n"  , as_user: true )
             # client.chat_postMessage(channel: event.channel, text: "To edit a contact type something similar to: edit 1 change email to test@example.com. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
      #client.chat_postMessage(channel: event.channel, text: "or you can type `add' followed by first and last name to add a new contact.", as_user: true)
            # client.chat_postMessage(channel: event.channel, text: "Who and what would you like to edit? To edit the first person's email type 'edit 1 change email to test@example.com'. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
         return true
         
        elsif event.formatted_text.starts_with? "edit"
-         client.chat_postMessage(channel: event.channel, text: "Which contact would you like to edit? Type 'update' followed by the number associated with the contact you'd like to edit.", as_user: true)
-
-         return true   
-         
-       elsif event.formatted_text.starts_with? "update"
-         contact_id = event.formatted_text.gsub( "update", "" ).strip
+         contact_id = event.formatted_text.gsub( "edit", "" ).strip
          input_index = contact_id[0].to_i - 1
          all_contacts = Contact.order(:id)
-         # print the list
-                # contact_list = Contact.all
-                # contact = ""
-                # contact_list.each_with_index do |item, index|
-                # contact += "#{ index+ 1 }. #{ item.name } \n"
-                # end
-        
+
          client.chat_postMessage(channel: event.channel, text: "I'd be happy to update _#{all_contacts[input_index].name }_.*\n Here's what I have stored*\n Name: _#{all_contacts[input_index].name }_*\n Gender: _#{all_contacts[input_index].gender }_*\n Email: _#{all_contacts[input_index].email }_*\n Phone: _#{all_contacts[input_index].phone }_*\n", as_user: true)
          client.chat_postMessage(channel: event.channel, text: "Type 'name', 'email', 'gender', or 'phone' followed by the new information and I'll make changes.", as_user: true)
+
          return true   
+
+         # ------------------------------------------------------------------------
+         # =>   NOT NEEDED - MERGING WITH EDIT STEP
+         # ------------------------------------------------------------------------
+                 
+       # elsif event.formatted_text.starts_with? "update"
+      #    contact_id = event.formatted_text.gsub( "update", "" ).strip
+      #    input_index = contact_id[0].to_i - 1
+      #    all_contacts = Contact.order(:id)
+      #    # print the list
+      #           # contact_list = Contact.all
+      #           # contact = ""
+      #           # contact_list.each_with_index do |item, index|
+      #           # contact += "#{ index+ 1 }. #{ item.name } \n"
+      #           # end
+      #
+      #    client.chat_postMessage(channel: event.channel, text: "I'd be happy to update _#{all_contacts[input_index].name }_.*\n Here's what I have stored*\n Name: _#{all_contacts[input_index].name }_*\n Gender: _#{all_contacts[input_index].gender }_*\n Email: _#{all_contacts[input_index].email }_*\n Phone: _#{all_contacts[input_index].phone }_*\n", as_user: true)
+      #    client.chat_postMessage(channel: event.channel, text: "Type 'name', 'email', 'gender', or 'phone' followed by the new information and I'll make changes.", as_user: true)
+      #    return true
+      # ------------------------------------------------------------------------
+      # =>   NOT NEEDED - MERGING WITH EDIT STEP
+      # ------------------------------------------------------------------------
       
          # session variable set to nil?
          # set session variable to editing mode
