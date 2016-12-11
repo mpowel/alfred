@@ -18,15 +18,16 @@ module Sinatra
       if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }
         client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. Would you like to create a new contact? Type 'yes' or no'.", as_user: true)
 
-# Later I hope to add: in my database and soon will be able to track any interaction with the email account etanproject.org@gmail.com
-
       elsif event.formatted_text == "yes"
               client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
 
       elsif event.formatted_text == "no"
               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
 
-# Later I hope to add: Type 'view contacts' to see a list of existing contacts, otherwise I’ll come back later.
+    # ------------------------------------------------------------------------
+    # =>   MOVE TO EDIT CONTACT
+    # ------------------------------------------------------------------------
+              
       elsif event.formatted_text.starts_with? "view"
        # print the list
               contact_list = Contact.all
@@ -36,19 +37,16 @@ module Sinatra
               end
        client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
 
+    # ------------------------------------------------------------------------
+    # =>   MOVE TO EDIT CONTACT
+    # ------------------------------------------------------------------------
 
       elsif event.formatted_text == "add"
         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
 
       elsif event.formatted_text.starts_with? "add"
         contact_name = event.formatted_text.gsub( "add", "" ).strip
-        # I've removed the add prefix and cleaned up the string
-        # I now have a formatted name
-
-        # I'm creating a new object in my database with two pieces of info
         contact = Contact.create(team_id: event.team_id, name: contact_name )
-# Should this include a contact_id??? #################################
-        # I'm  now storing/saving/updating it in the database
         contact.save
 
         client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
@@ -90,7 +88,7 @@ module Sinatra
         
 
         elsif event.formatted_text.starts_with? "phone"
-          contact_number = event.formatted_text.gsub( "phone", "" ).strip  #.to_i
+          contact_number = event.formatted_text.gsub( "phone", "" ).strip  
           
           contact = Contact.all.last
           contact.phone = contact_number.to_i
@@ -99,12 +97,9 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
           client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type 'view'. To add another contact, type 'add' and then the first and last name.", as_user: true)
 
-#         # type 'view contacts'
 #         # add additional commands here...
       
       else
-        # ERROR Commands
-        # not understood or an error
         client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
        
       end
@@ -116,20 +111,6 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
-
-      # def format_phone_number number
-   #        digits = number.gsub(/\D/, '').split(//)
-   #
-   #        if (digits.length == 11 and digits[0] == '1')
-   #          # Strip leading 1
-   #          digits.shift
-   #        end
-   #
-   #        if (digits.length == 10)
-   #          digits = digits.join
-   #          '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
-   #        end
-   #      end
 
     def is_email_address str
       return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]+\.)[a-zA-Z]{2,4}/)
@@ -153,68 +134,3 @@ end
 
 
 
-
-#
-#   elsif person.format_number          # == "123"
-# # elsif event.formatted_text.is_a? Integer   #if or elsif??
-# # if formatted_number { |b| event.formatted_text b }
-#   contact = Contact.all.last
-#   contact.phone = event.formatted_text  #.convert_to_phone.format_phone
-#   contact.save!
-#
-#   client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-#   client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
-
-
-
-# def add_phone client, event
-#
-#   puts event
-#   puts "Formatted Text: #{person.format_number}"
-#
-#   return if event.formatted_text.nil?
-#
-#   is_admin = is_admin_or_owner client, event
-#
-#   if person.format_numbert
-#     contact = Contact.all.last
-#     contact.phone = event.formatted_text  #.convert_to_phone.format_phone
-#     contact.save!
-#
-#     client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-#     client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
-#   else
-#     # ERROR Commands
-#     # not understood or an error
-#     client.chat_postMessage(channel: event.channel, text: "What did you say to me?!", as_user: true)
-#
-#   end
-#
-# end
-
-
-
-# class String  # I don't really know how to use class
-#     def convert_to_phone
-#        number = self.gsub(/\D/, '').split(//)
-#        #US 11-digit numbers
-#        number = number.drop(1) if (number.count == 11 && number[0] == 1)
-#        #US 10-digit numbers
-#        number.to_s if (number.count == 10)
-#      end
-#      def format_phone
-#        return "#{self[0,3]}-#{self[3,3]}-#{self[6,4]}"
-#      end
-#    end
-
-
-
-
-        
-      # elsif number person.format_number    #.convert_to_phone.format_phone
-#
-#         contact = Contact.all.last
-#         contact.phone = phone.format_number
-#         contact.save!
-#
-#         client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
