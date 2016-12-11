@@ -3,6 +3,7 @@ Why isn't my contact table migrating and seeding into my app database? (it's wor
 How do I generate a random list of thank you's?
 Can I use this to validate phone numbers? It seems complex: https://github.com/carr/phone
 Did I use class the right way?   I didn't create String.rb 
+		I had to comment out this class because it was breaking my helper.
 		http://stackoverflow.com/questions/5912690/is-there-a-gem-that-normalizes-and-format-us-phone-numbers-in-ruby
         #is there a shorter way to reference event.formatted_text.convert_to_phone.format_phone here?
 
