@@ -6,6 +6,7 @@ Did I use class the right way?   I didn't create String.rb
 		I had to comment out this class because it was breaking my helper.
 		http://stackoverflow.com/questions/5912690/is-there-a-gem-that-normalizes-and-format-us-phone-numbers-in-ruby
         #is there a shorter way to reference event.formatted_text.convert_to_phone.format_phone here?
+Why am I getting duplicate responses? It seems like it's not checking if the bot is the user.
 
 Possible errors:
 8:00pm: creating multiple helper files - watch out for duplicate entries
