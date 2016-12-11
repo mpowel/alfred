@@ -84,7 +84,7 @@ module Sinatra
         contact.phone = event.formatted_text
         contact.save!
 
-          client.chat_postMessage(channel: event.channel, text: "_#{ contact.name }_ has successfully be stored.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number.", as_user: true)
 
 
       # add additional commands here...
