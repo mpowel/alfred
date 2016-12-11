@@ -1,86 +1,13 @@
+Questions:
+Why isn't my contact table migrating and seeding into my app database? (it's working in )
+How do I generate a random list of thank you's?
 
-----------------------------------------------------------------------
-    Alfred Pseudo Code
-----------------------------------------------------------------------
-
-Welcome note from Alfred once somone joins the channel #alfredpennyworth
-FOR THE FIRST TIME.
-post "/message_actions" do
-  message = "Welcome to the group slack channel! I'm Alfred, your personal
-            contact management bot. I can store contacts in my database and
-            track any interaction with the email account etanproject.org@gmail.com.
-            /n  Would you like to create a new contact?"
-  if yes do |r|
-    r.message = "What is your contacts name?"
-  elsif no do |r|
-    r.message = "Ok, maybe later. Type “View Contacts” to see a list of
-                existing contacts, otherwise I’ll come back later."
-  else
-    #error message, references help.
-end
-#Welcome note from Alfred once someone joins the channel #alfredpennyworth
-#FOR RETURNING USERS.
-post "/message_actions" do
-  message = "Welcome back! Alfred here. If you need me, type either
-            “Create Contact”, to add a new contact to your database
-            or “View Contacts”, to see a list of all contacts."
-end
-
-#Flow for Create Contact
-post "/message_actions" do
-  if create_contact do |r|
-
-# Alfred takes down the contact first and last name, but the user
-# can delete and re-enter.
-
-    r.message = "What is your contacts name?"
-
-# the below "get" is meant to take in and store entry into database.
-    get = name and add to the database
-    r.message = "{repeat entry}? Type /'undo/' if incorrect."
-    if undo do |r|
-      destroy last entry
-      r.message = "Ok, sorry about that. What is your contacts name?"
-
-# otherwise Alfred will move on to the next prompt.
-
-    elsif yes do
-    r.message = "Title? You can /'skip/' if you/'d like"
-    if skip do |r|
-      r.skip
-    if undo do |r|
-        r.undo = name
-        r.message = "Would you like me to delete {repeat_name}?"
-        if yes do |r|
-          destroy name for this id
-
-# the below "get" is meant to take in and store entry into database.
-    elsif
-      get = title and add to the database
-
-  elsif
-
-end
-
-post "/message_actions" do
-  message = ""
-
-end
+Possible errors:
+8:00pm: creating multiple helper files - watch out for duplicate entries
+8:07pm: updated contact.rb to be connected to my other tables
 
 
-#variety of error messages randomly selected as triggered.
-error 401 do
-    "I beg your pardon? {Repeats prompt}"
-    "I don’t believe I know that one. {Repeats prompt}"
-    "Why I do believe you stumped me, old chap! Do you want to {repeats prompt}?"
-end
-
-#When the user replies with thank or "thanks", Alfred will say one of the following:
-post "/message_actions" do
-  "You’re quite welcome."
-  "My pleasure."
-  "Happy to help."
-  "Anytime."
-  "That’s what I’m here for."
-end
-
+To Dos:
+Figure out how to display a table of contact_id and name
+Connect etanproject.org@gmail.com to contextio API
+Create helper file with all contextio commands

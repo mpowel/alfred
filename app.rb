@@ -32,8 +32,8 @@ Dir["./models/*.rb"].each {|file| require file }
 Dir["./helpers/*.rb"].each {|file| require file }
 
 
-# helpers Sinatra::DateTimeHelper
-# helpers Sinatra::OfficeHoursHelper
+helpers Sinatra::CommandsCreateContact
+helpers Sinatra::CommandsEditContact
 helpers Sinatra::CommandsHelper
 
 
