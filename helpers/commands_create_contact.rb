@@ -103,20 +103,19 @@ module Sinatra
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
 
-    def formatted_number number
-      digits = number.gsub(/\D/, '').split(//)
+    def format_number(number)
+        digits = number.gsub(/\D/, '').split(//)
 
-      if (digits.length == 11 and digits[0] == '1')
-        # Strip leading 1
-        digits.shift
-      end
+        if (digits.length == 11 and digits[0] == '1')
+          # Strip leading 1
+          digits.shift
+        end
 
-      if (digits.length == 10)
-        # Rejoin for latest Ruby, remove next line if old Ruby
-        digits = digits.join
-        '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+        if (digits.length == 10)
+          digits = digits.join
+          '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+        end
       end
-    end
 
     def is_email_address str
       return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]+\.)[a-zA-Z]{2,4}/)
