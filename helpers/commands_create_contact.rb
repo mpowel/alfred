@@ -97,7 +97,7 @@ module Sinatra
           contact.save!
 
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-
+          client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type 'view'. To add another contact, type 'add' and then the first and last name.", as_user: true)
 
 #         # type 'view contacts'
 #         # add additional commands here...
@@ -106,7 +106,7 @@ module Sinatra
         # ERROR Commands
         # not understood or an error
         client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
-
+       
       end
 
     end
