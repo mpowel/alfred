@@ -79,16 +79,14 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
 
-      elsif event.formatted_text.convert_to_phone.format_phone 
+      elsif event.formatted_text.is_a? Integer
              # if formatted_number { |b| event.formatted_text b }
         
         contact = Contact.all.last
-        contact.phone = event.formatted_text
+        contact.phone = event.formatted_text.convert_to_phone.format_phone
         contact.save!
 
-        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{event.formatted_text.convert_to_phone.format_phone}.", as_user: true)
-
-        #is there a shorter way to reference event.formatted_text.convert_to_phone.format_phone here?
+        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
   
       # add additional commands here...
         end
