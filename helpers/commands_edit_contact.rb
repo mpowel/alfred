@@ -5,7 +5,7 @@ module Sinatra
     # =>   MAPS THE CURRENT EVENT TO AN ACTION
     # ------------------------------------------------------------------------
     
-    def event_to_action client, event   #try changing this to a new definition
+    def you_always_do_this client, event   #try changing this to a new definition
       
       puts event
       puts "Formatted Text: #{event.formatted_text}"
