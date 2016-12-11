@@ -26,8 +26,9 @@ module Sinatra
            # client.chat_postMessage(channel: event.channel, text: "*Your grocery list :*\n" + grocery_list  , as_user: true )
            client.chat_postMessage(channel: event.channel, text: "Here are all your contacts." + contact_list  , as_user: true )
            # client.chat_postMessage(channel: event.channel, text: "Type 'update [number] to edit an existing contact or `add [name]` to add a new contact.", as_user: true)
-
          end
+         
+      end
       
       # if event.formatted_text.include? == "view contacts"
       #   contact = Contact.all.last
