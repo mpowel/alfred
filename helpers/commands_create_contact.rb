@@ -78,7 +78,8 @@ module Sinatra
         else
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
-        if formatted_number event.formatted_text
+        
+        if formatted_number { |b| event.formatted_text b }
         
         contact = Contact.all.last
         contact.phone = event.formatted_text
