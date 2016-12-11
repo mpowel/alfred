@@ -121,9 +121,19 @@ module Sinatra
      #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
      #  # Delete all
      elsif event.formatted_text == "delete all"
+         client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type 'yes delete all' to delete your entire contact list. Type 'wait no' to cancel", as_user: true)
+
+       return true
+       
+     elsif event.formatted_text == "yes delete all"
        Contact.destroy_all
        #create one step that's a warning and prompts yes
        client.chat_postMessage(channel: event.channel, text: "I have deleted your entire list of contacts.", as_user: true)
+
+       return true
+
+     elsif event.formatted_text.include? "no"
+         client.chat_postMessage(channel: event.channel, text: "Phew, that was a close one. Your database was left intact", as_user: true)
 
        return true
 
