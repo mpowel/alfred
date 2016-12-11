@@ -86,8 +86,9 @@ module Sinatra
         contact.phone = event.formatted_text
         contact.save!
 
-        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{event.formatted_text.convert_to_phone.format_phone}.", as_user: true)
 
+        #is there a shorter way to reference event.formatted_text.convert_to_phone.format_phone here?
   
       # add additional commands here...
         end
@@ -104,7 +105,7 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
-class String
+class String  # I don't really know how to use class
     def convert_to_phone
        number = self.gsub(/\D/, '').split(//)
        #US 11-digit numbers
