@@ -5,7 +5,7 @@ module Sinatra
     # =>   MAPS THE CURRENT EVENT TO AN ACTION
     # ------------------------------------------------------------------------
     
-    def event_to_action client, event
+    def event_to_action client, event   #try changing this to a new definition
       
       puts event
       puts "Formatted Text: #{event.formatted_text}"
@@ -15,7 +15,7 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
       
       
-      if ["you", "always", "hate"].any? { |w| event.formatted_text.starts_with? w }
+      if ["you", "always", "hate"].any? { |z| event.formatted_text.starts_with? z }  #try using another letter besides w
         client.chat_postMessage(channel: event.channel, text: "No no no!", as_user: true)
         
       else
