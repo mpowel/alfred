@@ -78,8 +78,9 @@ module Sinatra
         else
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
-        
-        if formatted_number { |b| event.formatted_text b }
+
+      elsif event.formatted_text.convert_to_phone.format_phone 
+             # if formatted_number { |b| event.formatted_text b }
         
         contact = Contact.all.last
         contact.phone = event.formatted_text
@@ -103,7 +104,18 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
-
+class String
+    def convert_to_phone
+       number = self.gsub(/\D/, '').split(//)
+       #US 11-digit numbers
+       number = number.drop(1) if (number.count == 11 && number[0] == 1)
+       #US 10-digit numbers
+       number.to_s if (number.count == 10)
+     end
+     def format_phone
+       return "#{self[0,3]}-#{self[3,3]}-#{self[6,4]}"
+     end
+   end
     def format_number(number)
         digits = number.gsub(/\D/, '').split(//)
 

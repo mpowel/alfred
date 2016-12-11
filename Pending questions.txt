@@ -1,6 +1,7 @@
 Questions:
 Why isn't my contact table migrating and seeding into my app database? (it's working in )
 How do I generate a random list of thank you's?
+Can I use this to validate phone numbers? It seems complex: https://github.com/carr/phone
 
 Possible errors:
 8:00pm: creating multiple helper files - watch out for duplicate entries
@@ -19,3 +20,64 @@ Figured out how to link a new helper file to the app
 	Define new function
 	Ddd function to bottom of app
 	Add helpers Sinatra::CommandsCreateContact to top of app
+	
+Phone Validation
+https://github.com/tejasmanohar/timgur/blob/master/app.rb
+   what is Orchestrate::Application?
+http://api.rubyonrails.org/classes/ActionView/Helpers/NumberHelper.html#method-i-number_to_phone
+
+#--------------------------------------------------------------------------------
+# not sure how to install this one
+#--------------------------------------------------------------------------------
+
+require "active_support/all"
+
+module Helpers
+  extend ActiveSupport::NumberHelper
+end
+
+Helpers.number_to_currency(10.23) # => "$10.23"
+
+#--------------------------------------------------------------------------------
+# didn't work when the only thing I did was create these files
+#--------------------------------------------------------------------------------
+
+# app/validators/phone_number_validator.rb
+class PhoneNumberValidator < ActiveModel::EachValidator
+  @@regex = %r{\A(?:1(?:[. -])?)?(?:\((?=\d{3}\)))?([2-9]\d{2})(?:(?<=\(\d{3})\))? ?(?:(?<=\d{3})[.-])?([2-9]\d{2})[. -]?(\d{4})(?: (?:ext|x)\.? ?(\d{1,5}))?\Z}
+
+  def validate_each (object, attribute, value)
+    if m = value.match(@@regex)
+      # format the phone number consistently
+      object.send("#{attribute}=", "(#{m[1]}) #{m[2]}-#{m[3]}")
+    else
+      object.errors[attribute] << (options[:message] || "is not an appropriately formatted phone number")
+    end
+  end
+end
+
+# app/models/foobar.rb
+class Foobar < ActiveRecord::Base
+  validates :phone, phone_number: true
+end
+
+#--------------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------------
+
+http://stackoverflow.com/questions/5912690/is-there-a-gem-that-normalizes-and-format-us-phone-numbers-in-ruby
+https://github.com/carr/phone
+def formatted_number(number)
+  digits = number.gsub(/\D/, '').split(//)
+
+  if (digits.length == 11 and digits[0] == '1')
+    # Strip leading 1
+    digits.shift
+  end
+
+  if (digits.length == 10)
+    # Rejoin for latest Ruby, remove next line if old Ruby
+    digits = digits.join
+    '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+  end
+end
