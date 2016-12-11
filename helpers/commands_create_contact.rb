@@ -77,8 +77,8 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "What's his phone number? ", as_user: true)
         else
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
-
-      elsif formatted_number event.formatted_text
+        end
+        if formatted_number event.formatted_text
         
         contact = Contact.all.last
         contact.phone = event.formatted_text
@@ -88,7 +88,7 @@ module Sinatra
 
 
       # add additional commands here...
-    end
+        end
       else
         # ERROR Commands
         # not understood or an error
