@@ -24,23 +24,6 @@ module Sinatra
       elsif event.formatted_text == "no"
               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
 
-    # ------------------------------------------------------------------------
-    # =>   MOVE TO EDIT CONTACT
-    # ------------------------------------------------------------------------
-              
-      elsif event.formatted_text.starts_with? "view"
-       # print the list
-              contact_list = Contact.all
-              contact = ""
-              contact_list.each_with_index do |item, index|
-              contact += "#{ index+ 1 }. #{ item.name } \n"
-              end
-       client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
-
-    # ------------------------------------------------------------------------
-    # =>   MOVE TO EDIT CONTACT
-    # ------------------------------------------------------------------------
-
       elsif event.formatted_text == "add"
         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
 
