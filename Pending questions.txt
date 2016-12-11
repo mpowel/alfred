@@ -10,9 +10,8 @@ validate phone  gem install validates_phone_number   DONE (where does the class 
 			    class Person < ActiveRecord::Base
 			      validates :mobile, :phone_number => {:message => "invalid and can only be attributable to human error"}
 			    end
-                
+                what does the top of the create contact defined method mean? Do I need to add that somewhere?         
 thanks array (correct format to alternate through my list of thank you notes)
-
 
 
 

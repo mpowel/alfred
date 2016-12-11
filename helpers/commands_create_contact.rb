@@ -79,15 +79,6 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
                 
-        elsif phone.format_number          # == "123"
-        # elsif event.formatted_text.is_a? Integer   #if or elsif??
-        # if formatted_number { |b| event.formatted_text b }
-          contact = Contact.all.last
-          contact.phone = event.formatted_text  #.convert_to_phone.format_phone
-          contact.save!
-
-          client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-          client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
         # type 'view contacts'
         # add additional commands here...
       
@@ -100,35 +91,48 @@ module Sinatra
 
     end
 
+    def add_phone client, event
+      
+      puts event
+      puts "Formatted Text: #{person.format_number}"
+
+      return if event.formatted_text.nil?
+
+      is_admin = is_admin_or_owner client, event
+
+      if person.format_numbert
+        contact = Contact.all.last
+        contact.phone = event.formatted_text  #.convert_to_phone.format_phone
+        contact.save!
+
+        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
+      else
+        # ERROR Commands
+        # not understood or an error
+        client.chat_postMessage(channel: event.channel, text: "What did you say to me?!", as_user: true)
+
+      end
+      
+    end
 
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
-# class String  # I don't really know how to use class
-#     def convert_to_phone
-#        number = self.gsub(/\D/, '').split(//)
-#        #US 11-digit numbers
-#        number = number.drop(1) if (number.count == 11 && number[0] == 1)
-#        #US 10-digit numbers
-#        number.to_s if (number.count == 10)
-#      end
-#      def format_phone
-#        return "#{self[0,3]}-#{self[3,3]}-#{self[6,4]}"
-#      end
-#    end
-    # def format_number(number)
-    #     digits = number.gsub(/\D/, '').split(//)
-    #
-    #     if (digits.length == 11 and digits[0] == '1')
-    #       # Strip leading 1
-    #       digits.shift
-    #     end
-    #
-    #     if (digits.length == 10)
-    #       digits = digits.join
-    #       '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
-    #     end
-    #   end
+
+    def format_number number
+        digits = number.gsub(/\D/, '').split(//)
+
+        if (digits.length == 11 and digits[0] == '1')
+          # Strip leading 1
+          digits.shift
+        end
+
+        if (digits.length == 10)
+          digits = digits.join
+          '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+        end
+      end
 
     def is_email_address str
       return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]+\.)[a-zA-Z]{2,4}/)
@@ -149,3 +153,36 @@ module Sinatra
   end
 
 end
+
+
+
+
+#
+#   elsif person.format_number          # == "123"
+# # elsif event.formatted_text.is_a? Integer   #if or elsif??
+# # if formatted_number { |b| event.formatted_text b }
+#   contact = Contact.all.last
+#   contact.phone = event.formatted_text  #.convert_to_phone.format_phone
+#   contact.save!
+#
+#   client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
+#   client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
+
+
+
+
+
+
+
+# class String  # I don't really know how to use class
+#     def convert_to_phone
+#        number = self.gsub(/\D/, '').split(//)
+#        #US 11-digit numbers
+#        number = number.drop(1) if (number.count == 11 && number[0] == 1)
+#        #US 10-digit numbers
+#        number.to_s if (number.count == 10)
+#      end
+#      def format_phone
+#        return "#{self[0,3]}-#{self[3,3]}-#{self[6,4]}"
+#      end
+#    end
