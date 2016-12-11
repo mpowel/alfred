@@ -87,7 +87,7 @@ module Sinatra
 
         client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number.", as_user: true)
 
-        end
+  
       # add additional commands here...
         end
       else
