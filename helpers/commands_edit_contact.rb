@@ -23,8 +23,8 @@ module Sinatra
             contact += "#{ index+ 1 }. #{ item.name } \n"
             end
      client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact  , as_user: true )
-     
      #client.chat_postMessage(channel: event.channel, text: "Type 'update' followed by the number associated with the contact you'd like to update or `add [name]` to add a new contact.", as_user: true)
+     #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
          end
       # Delete all
 
