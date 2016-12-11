@@ -38,7 +38,7 @@ module Sinatra
          input_index = contact_id[0].to_i - 1
          all_contacts = Contact.order(:id)
 
-         client.chat_postMessage(channel: event.channel, text: "I'd be happy to update _#{all_contacts[input_index].name }_.*\n Here's what I have stored*\n Name: _#{all_contacts[input_index].name }_*\n Gender: _#{all_contacts[input_index].gender }_*\n Email: _#{all_contacts[input_index].email }_*\n Phone: _#{all_contacts[input_index].phone }_*\n", as_user: true)
+         client.chat_postMessage(channel: event.channel, text: "I'd be happy to update _#{all_contacts[input_index].name }_.\n Here's what I have stored\n Name: #{all_contacts[input_index].name }\n Gender: #{all_contacts[input_index].gender }\n Email: #{all_contacts[input_index].email }\n Phone: #{all_contacts[input_index].phone }\n", as_user: true)
          client.chat_postMessage(channel: event.channel, text: "Type 'name', 'email', 'gender', or 'phone' followed by the new information and I'll make changes.", as_user: true)
 
          return true   
