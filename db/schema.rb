@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210224905) do
+ActiveRecord::Schema.define(version: 20161210233646) do
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "team_id"
+    t.string   "name"
+    t.string   "gender"
+    t.string   "title"
+    t.string   "email"
+    t.integer  "phone"
+    t.datetime "timestamp"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "team_id"
