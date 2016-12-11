@@ -34,7 +34,7 @@ Dir["./helpers/*.rb"].each {|file| require file }
 
 
 helpers Sinatra::CommandsCreateContact
-helpers Sinatra::CommandsEditContact
+# helpers Sinatra::CommandsEditContact
 helpers Sinatra::CommandsHelper
 
 
@@ -333,7 +333,7 @@ def respond_to_slack_event json
   
   event_to_action client, event 
   create_contact client, event 
-  view_and_edit client, event 
+  # view_and_edit client, event
   # you_always_do_this client, event
   
 end
