@@ -11,3 +11,4 @@ To Dos:
 Figure out how to display a table of contact_id and name
 Connect etanproject.org@gmail.com to contextio API
 Create helper file with all contextio commands
+Figure out how to edit existing table (build out that functionality)

@@ -15,7 +15,7 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
 
       # Hi Commands
-      if ["hi", "hey", "hello"].any? { |w| event.formatted_text.starts_with? w }
+      if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }
         client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. Would you like to create a new contact? Type 'yes' or no'.", as_user: true)
 
 # Later I hope to add: in my database and soon will be able to track any interaction with the email account etanproject.org@gmail.com
