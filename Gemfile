@@ -11,8 +11,8 @@ gem 'activesupport'
 gem 'haml'
 gem 'slack-ruby-client'
 gem 'httparty'
-gem 'validates_phone_number'
-# gem 'contextio'
+# gem 'validates_phone_number'
+gem 'contextio'
 
 # to avoid installing postgres use 
 # bundle install --without production

@@ -8,8 +8,8 @@ require 'haml'
 require 'json'
 require 'slack-ruby-client'
 require 'httparty'
-require 'validates_phone_number'
-#require 'contextio'
+# require 'validates_phone_number'
+require 'contextio'
 
 
 # ----------------------------------------------------------------------
@@ -56,6 +56,23 @@ end
 get "/about" do
   "About this app"
 end
+
+# ----------------------------------------------------------------------
+#     CONTEXTIO
+# ----------------------------------------------------------------------
+
+contextio = ContextIO.new('your_api_key', 'your_api_secret')
+
+account = contextio.accounts.where(email: 'some@email.com').first
+
+account.messages.where(limit: 5).each do |message|
+  puts message.subject
+end
+
+etan_account_id = "exampleaccountid12345678"
+
+account = contextio.accounts[etan_account_id]
+message = account.messages[etan_message_id]
 
 
 # ----------------------------------------------------------------------
