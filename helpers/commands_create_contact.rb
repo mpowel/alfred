@@ -78,7 +78,14 @@ module Sinatra
         else
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
-                
+               
+      elsif format_phone_number phone.format_number    #.convert_to_phone.format_phone
+
+        contact = Contact.all.last
+        contact.phone = phone.format_number
+        contact.save!
+
+        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true) 
         # type 'view contacts'
         # add additional commands here...
       
@@ -91,48 +98,25 @@ module Sinatra
 
     end
 
-    def add_phone client, event
-      
-      puts event
-      puts "Formatted Text: #{person.format_number}"
 
-      return if event.formatted_text.nil?
-
-      is_admin = is_admin_or_owner client, event
-
-      if person.format_numbert
-        contact = Contact.all.last
-        contact.phone = event.formatted_text  #.convert_to_phone.format_phone
-        contact.save!
-
-        client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-        client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
-      else
-        # ERROR Commands
-        # not understood or an error
-        client.chat_postMessage(channel: event.channel, text: "What did you say to me?!", as_user: true)
-
-      end
-      
-    end
 
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
 
-    def format_number number
-        digits = number.gsub(/\D/, '').split(//)
+      def format_phone_number number
+          digits = number.gsub(/\D/, '').split(//)
 
-        if (digits.length == 11 and digits[0] == '1')
-          # Strip leading 1
-          digits.shift
-        end
+          if (digits.length == 11 and digits[0] == '1')
+            # Strip leading 1
+            digits.shift
+          end
 
-        if (digits.length == 10)
-          digits = digits.join
-          '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+          if (digits.length == 10)
+            digits = digits.join
+            '(%s) %s-%s' % [ digits[0,3], digits[3,3], digits[6,4] ]
+          end
         end
-      end
 
     def is_email_address str
       return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]+\.)[a-zA-Z]{2,4}/)
@@ -170,7 +154,30 @@ end
 
 
 
-
+# def add_phone client, event
+#
+#   puts event
+#   puts "Formatted Text: #{person.format_number}"
+#
+#   return if event.formatted_text.nil?
+#
+#   is_admin = is_admin_or_owner client, event
+#
+#   if person.format_numbert
+#     contact = Contact.all.last
+#     contact.phone = event.formatted_text  #.convert_to_phone.format_phone
+#     contact.save!
+#
+#     client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
+#     client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
+#   else
+#     # ERROR Commands
+#     # not understood or an error
+#     client.chat_postMessage(channel: event.channel, text: "What did you say to me?!", as_user: true)
+#
+#   end
+#
+# end
 
 
 
