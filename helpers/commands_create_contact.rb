@@ -89,15 +89,15 @@ module Sinatra
         end
         
 
-        # elsif event.formatted_text.starts_with? "phone"
-        # contact_number = event.formatted_text.gsub( "phone", "" ).strip.to_i
-        #
-        #   contact = Contact.all.last
-        #   contact.phone = contact_number
-        #   contact.save!
-        #
-        #   client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-        #
+        elsif event.formatted_text.starts_with? "phone"
+          contact_number = event.formatted_text.gsub( "phone", "" ).strip  #.to_i
+          
+          contact = Contact.all.last
+          contact.phone = contact_number.to_i
+          contact.save!
+
+          client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
+
 
 #         # type 'view contacts'
 #         # add additional commands here...
