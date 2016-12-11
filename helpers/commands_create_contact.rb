@@ -79,18 +79,16 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? ", as_user: true)
         end
                 
-        elsif event.formatted_text == "123"
+        elsif phone.format_number          # == "123"
         # elsif event.formatted_text.is_a? Integer   #if or elsif??
-               # if formatted_number { |b| event.formatted_text b }
-
+        # if formatted_number { |b| event.formatted_text b }
           contact = Contact.all.last
           contact.phone = event.formatted_text  #.convert_to_phone.format_phone
           contact.save!
 
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-  
-
-
+          client.chat_postMessage(channel: event.channel, text: "Soon you'll be able to view a list of all your contacts. For now you can only add more contacts. Yea, I'm disappointed, too. I have so much more potential!", as_user: true)
+        # type 'view contacts'
         # add additional commands here...
       
       else

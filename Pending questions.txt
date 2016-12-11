@@ -1,3 +1,25 @@
+Questions for Elijah:
+database set up - why isn't it populating locally? I'd like to be able to verify data that's been added
+--> delete contact
+view contacts (display as table)
+update name
+update email
+update gender
+update phone
+validate phone  gem install validates_phone_number   DONE (where does the class go? added to model phone.rb)
+			    class Person < ActiveRecord::Base
+			      validates :mobile, :phone_number => {:message => "invalid and can only be attributable to human error"}
+			    end
+                
+thanks array (correct format to alternate through my list of thank you notes)
+
+
+
+
+
+
+
+
 Questions:
 Why isn't my contact table migrating and seeding into my app database? (it's working in )
 How do I generate a random list of thank you's?
