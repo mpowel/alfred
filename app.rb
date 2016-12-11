@@ -9,7 +9,7 @@ require 'json'
 require 'slack-ruby-client'
 require 'httparty'
 # require 'validates_phone_number'
-require 'contextio'
+# require 'contextio'
 
 
 # ----------------------------------------------------------------------

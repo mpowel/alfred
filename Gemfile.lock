@@ -14,6 +14,8 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     concurrent-ruby (1.0.2)
+    contextio (1.6.0)
+      oauth (~> 0.4.5)
     dotenv (2.1.1)
     faraday (0.10.0)
       multipart-post (>= 1.2, < 3)
@@ -30,6 +32,7 @@ GEM
     minitest (5.10.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    oauth (0.4.7)
     pg (0.19.0)
     rack (1.6.5)
     rack-protection (1.5.3)
@@ -57,7 +60,6 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    validates_phone_number (2.0.1)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -68,6 +70,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
+  contextio
   dotenv
   haml
   httparty
@@ -79,7 +82,6 @@ DEPENDENCIES
   sinatra-activerecord
   slack-ruby-client
   sqlite3
-  validates_phone_number
 
 BUNDLED WITH
    1.13.6
