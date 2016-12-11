@@ -315,5 +315,6 @@ def respond_to_slack_event json
   
   event_to_action client, event 
   you_always_do_this client, event 
+  create_contact client, event 
   
 end
