@@ -20,64 +20,64 @@ module Sinatra
 
 # Later I hope to add: in my database and soon will be able to track any interaction with the email account etanproject.org@gmail.com
 
-   #    elsif event.formatted_text == "yes"
-#               client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
-#
-#       elsif event.formatted_text == "no"
-#               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
-#
-# # Later I hope to add: Type 'view contacts' to see a list of existing contacts, otherwise I’ll come back later.
-#
-#       elsif event.formatted_text == "add"
-#         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
-#
-#       elsif event.formatted_text.starts_with? "add"
-#         contact_name = event.formatted_text.gsub( "add", "" ).strip
-#         # I've removed the add prefix and cleaned up the string
-#         # I now have a formatted name
-#
-#         # I'm creating a new object in my database with two pieces of info
-#         contact = Contact.create(team_id: event.team_id, name: contact_name )
-# # Should this include a contact_id??? #################################
-#         # I'm  now storing/saving/updating it in the database
-#         contact.save
-#
-#         client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
-#         client.chat_postMessage(channel: event.channel, text: "What is _#{ contact.name }_'s gender? Are the a `male` or a `female`. ", as_user: true)
-#
-#       elsif event.formatted_text.starts_with? "male"
-#
-#         contact = Contact.all.last
-#         contact.gender = "male"
-#         contact.save!
-#
-#         client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a man. I've updated that. ", as_user: true)
-#         client.chat_postMessage(channel: event.channel, text: "What is his email? ", as_user: true)
-#
-#
-#       elsif event.formatted_text.starts_with? "female"
-#
-#         contact = Contact.all.last
-#         contact.gender = "female"
-#         contact.save!
-#
-#         client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a woman. I've updated that. ", as_user: true)
-#         client.chat_postMessage(channel: event.channel, text: "What is her email? ", as_user: true)
-#
-#
-#       elsif is_email_address event.formatted_text
-#
-#         contact = Contact.all.last
-#         contact.email = event.formatted_text
-#         contact.save!
-#
-#         client.chat_postMessage(channel: event.channel, text: "I've associated the email `#{contact.email}` with _#{ contact.name }_. ", as_user: true)
-#
-#         if contact.gender == "male"
-#           client.chat_postMessage(channel: event.channel, text: "What's his phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
-#         else
-#           client.chat_postMessage(channel: event.channel, text: "What's her phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
-#         end
+      elsif event.formatted_text == "yes"
+              client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
+
+      elsif event.formatted_text == "no"
+              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
+
+# Later I hope to add: Type 'view contacts' to see a list of existing contacts, otherwise I’ll come back later.
+
+      elsif event.formatted_text == "add"
+        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
+
+      elsif event.formatted_text.starts_with? "add"
+        contact_name = event.formatted_text.gsub( "add", "" ).strip
+        # I've removed the add prefix and cleaned up the string
+        # I now have a formatted name
+
+        # I'm creating a new object in my database with two pieces of info
+        contact = Contact.create(team_id: event.team_id, name: contact_name )
+# Should this include a contact_id??? #################################
+        # I'm  now storing/saving/updating it in the database
+        contact.save
+
+        client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is _#{ contact.name }_'s gender? Are the a `male` or a `female`. ", as_user: true)
+
+      elsif event.formatted_text.starts_with? "male"
+
+        contact = Contact.all.last
+        contact.gender = "male"
+        contact.save!
+
+        client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a man. I've updated that. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is his email? ", as_user: true)
+
+
+      elsif event.formatted_text.starts_with? "female"
+
+        contact = Contact.all.last
+        contact.gender = "female"
+        contact.save!
+
+        client.chat_postMessage(channel: event.channel, text: "So _#{ contact.name }_ is a woman. I've updated that. ", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What is her email? ", as_user: true)
+
+
+      elsif is_email_address event.formatted_text
+
+        contact = Contact.all.last
+        contact.email = event.formatted_text
+        contact.save!
+
+        client.chat_postMessage(channel: event.channel, text: "I've associated the email `#{contact.email}` with _#{ contact.name }_. ", as_user: true)
+
+        if contact.gender == "male"
+          client.chat_postMessage(channel: event.channel, text: "What's his phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
+        else
+          client.chat_postMessage(channel: event.channel, text: "What's her phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
+        end
         
       # elsif event.formatted_text.starts_with? "view"
   #            # print the list
