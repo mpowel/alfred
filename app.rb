@@ -336,5 +336,6 @@ def respond_to_slack_event json
            create_contact client, event 
 
   # you_always_do_this client, event
-  
+end
+end
 end
