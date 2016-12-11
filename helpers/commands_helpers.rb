@@ -22,11 +22,11 @@ module Sinatra
       elsif event.formatted_text.include? "help"
         client.chat_postMessage(channel: event.channel, text: "I can store contacts in my database and soon will be able to track interactions with the email account etanproject.org@gmail.com. Would you like to create a new contact? Type 'yes' or no'.", as_user: true)
         
-            if event.formatted_text == "yes"
-              client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and i'll add them for you.", as_user: true)
-        
-            elsif event.formatted_text == "no"
-              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. Type “View Contacts” to see a list of existing contacts, otherwise I’ll come back later.", as_user: true)
+            # if event.formatted_text == "yes"
+            #   client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and i'll add them for you.", as_user: true)
+            #
+            # elsif event.formatted_text == "no"
+            #   client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. Type “View Contacts” to see a list of existing contacts, otherwise I’ll come back later.", as_user: true)
               
       elsif event.formatted_text.starts_with? "thank"
         client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
