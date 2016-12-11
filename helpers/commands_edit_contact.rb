@@ -29,6 +29,8 @@ module Sinatra
          end
          
       end
+  
+    end
       
       # if event.formatted_text.include? == "view contacts"
       #   contact = Contact.all.last
