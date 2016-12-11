@@ -18,10 +18,10 @@ module Sinatra
       # View contacts
       if event.formatted_text.starts_with? "view"
            # print the list
-           all_items = Contact.all 
+           all_contacts = Contact.all 
            contact_list = ""
-           all_items.each_with_index do |item, index|
-           contact_list += "#{ index+ 1 }. #{ item.item_name } \n"
+           all_contacts.each_with_index do |item, index|
+           contact_list += "#{ index+ 1 }. #{ contact.name } \n"
            end
            # client.chat_postMessage(channel: event.channel, text: "*Your grocery list :*\n" + grocery_list  , as_user: true )
            client.chat_postMessage(channel: event.channel, text: "Here are all your contacts." + contact_list  , as_user: true )

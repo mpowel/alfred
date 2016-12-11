@@ -34,7 +34,7 @@ Dir["./helpers/*.rb"].each {|file| require file }
 
 
 helpers Sinatra::CommandsCreateContact
-# helpers Sinatra::CommandsEditContact
+helpers Sinatra::CommandsEditContact
 helpers Sinatra::CommandsHelper
 
 
