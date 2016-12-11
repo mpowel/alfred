@@ -27,6 +27,14 @@ module Sinatra
               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
 
 # Later I hope to add: Type 'view contacts' to see a list of existing contacts, otherwise I’ll come back later.
+      elsif event.formatted_text.starts_with? "view"
+       # print the list
+              contact = Contact.all
+              contact_list = ""
+              contact.each_with_index do |item, index|
+              contact_list += "#{ index+ 1 }. #{ item.contact.name } \n"
+              end
+       client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact_list  , as_user: true )
 
       elsif event.formatted_text == "add"
         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
@@ -79,15 +87,7 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "What's her phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
         end
         
-      elsif event.formatted_text.starts_with? "view"
-             # print the list
-             contact = Contact.all
-             contact_list = ""
-             contact.each_with_index do |item, index|
-             contact_list += "#{ index+ 1 }. #{ item.contact.name } \n"
-             end
-
-             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.*\n" + contact_list  , as_user: true )
+      
 
     
         # elsif event.formatted_text.starts_with? "phone"
