@@ -3,17 +3,17 @@
 ### Who is Alfred?
 Alfred the Botler is based on Batman's british butler Alfred Pennyworth. Alfred the Botler is highly educated, but as a bot can be a bit simple. He's learning his new role and soon will be up to tip top shape.
 
+### What can he do?
+Alfred knows you're very busy and in high demand, which is why he's offered to keep track of your contacts. He's still new to all of this, but eventually he'll be able to automatically store new contacts and start writing an email for you!
+
+Sadly, however, at the moment he's only able to take down your contact's name, email, and phone number, show you the list of contacts in your address book, and delete a contact from that list.
+
 ### What's he like?
 He is extremely polished and well behaved, but at times he becomes quite snarky and his remarks may get a bit off colored. You'll have to watch out for him, especially when you `dismiss` him. Most of the time, he's quite the gentleman.
 
 **Alfred Pennyworth**
 ![alfred-pennyworth](http://vignette2.wikia.nocookie.net/batman/images/2/24/Alfred_Pennyworth.png)
 [Image Source](http://vignette2.wikia.nocookie.net/batman/images/2/24/Alfred_Pennyworth.png)
-
-### What can he do?
-Alfred knows you're very busy and in high demand, which is why he's offered to keep track of your contacts. He's still new to all of this, but eventually he'll be able to automatically store new contacts and start writing an email for you!
-
-Sadly, however, at the moment he's only able to take down your contact's name, email, and phone number, show you the list of contacts in your address book, and delete a contact from that list.
 
 ### Future API Integrations
 In the future, Alfred will be able to get access to any email account (with your permission of course) and will be able to automatically store contacts and track your engagement with them.
