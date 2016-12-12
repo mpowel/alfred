@@ -25,7 +25,8 @@ module Sinatra
         return true
 
         elsif event.formatted_text.include? "mother"
-           client.chat_postMessage(channel: event.channel, text: "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg", unfurl_link: true, as_user: true)
+          client.chat_postMessage(channel: event.channel, text: get_image, as_user: true)
+#           client.chat_postMessage(channel: event.channel, text: "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg", unfurl_link: true, as_user: true)
            client.chat_postMessage(channel: event.channel, text: "Oh nothing... I said nothing. Bye now!", as_user: true)
         # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
          return true
@@ -40,6 +41,21 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
+
+    def get_image
+      {
+          "attachments": [
+              {
+                  "fallback": "Alex Trabek and Sean Connery.",
+                  "color": "#36a64f",
+                  "pretext": "",
+                  "author_name": "Trabek",
+                  "text": "",
+                  "image_url": "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg",
+              }
+          ]
+      }.to_json
+    end
 
     THANKS = ["You’re quite welcome.", "My pleasure.", "Happy to help.", "Anytime.", "That’s what I’m here for."]
     
