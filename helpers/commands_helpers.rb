@@ -54,7 +54,7 @@ module Sinatra
 
     def get_thanks
         return THANKS.sample
-      end
+    end
     
     def get_user_name client, event
       # calls users_info on slack
