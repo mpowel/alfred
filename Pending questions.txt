@@ -8,6 +8,13 @@ To Dos:
  - add all commands to initial welcome and help
 
 
+#    add add to view prompt
+#    remove You can `view` your current list of contacts or `add` someone new.
+#    reduce variations for bye
+#    Make just kidding sound more british
+#    add dismiss and goodbye or good bye to bye
+#    image doesn't display if it's been used recently
+
 contact_last = event.formatted_text.split( “ ").last
 items.split( "," ).each do |num|
         i= (num.to_i)-1
