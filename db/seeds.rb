@@ -69,17 +69,17 @@ Contact.create!([{
     phone: "1235551212",
   }])
 Contact.create!([{
-    name: "Winston 'Jeeves' Smith",
-    gender: "male",
-    title: "Butler",
-    email: "jeeves@botler.com",
-    phone: "1235551212",
-  }])
-Contact.create!([{
     name: "You There",
     gender: "male",
     title: "Butler",
     email: "youthere@botler.com",
+    phone: "1235551212",
+  }])
+Contact.create!([{
+    name: "Winston 'Jeeves' Smith",
+    gender: "male",
+    title: "Butler",
+    email: "jeeves@botler.com",
     phone: "1235551212",
   }])
 
