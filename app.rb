@@ -333,6 +333,7 @@ def respond_to_slack_event json
   
   if not   event_to_action client, event 
   if not   view_and_edit client, event
+  if not   fake_contextio client, event
            create_contact client, event 
 
   # you_always_do_this client, event

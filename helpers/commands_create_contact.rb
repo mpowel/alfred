@@ -103,9 +103,16 @@ module Sinatra
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
 
+  
+    def is_phone_number int
+      return int.match( ((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4} )
+    end
+  
+    
     def is_email_address str
       return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]+\.)[a-zA-Z]{2,4}/)
     end
+
 
     def get_user_name client, event
       # calls users_info on slack

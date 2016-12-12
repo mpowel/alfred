@@ -15,11 +15,12 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
 
       if event.formatted_text.include? "help"
-        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now. Just kidding! Try typing 'add' or 'view'.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now. Just kidding! Try typing 'add', 'view', or 'when'.", as_user: true)
+
        return true
 
 
-      # View contacts
+     # View contacts
       elsif event.formatted_text.starts_with? "view"
      # print the list
             contact_list = Contact.all
@@ -33,6 +34,7 @@ module Sinatra
        
         return true
         
+    # Delete specific item
         elsif event.formatted_text.starts_with? "delete contact"
               contact_id = event.formatted_text.gsub( "delete contact", "" ).strip
               input_index = contact_id.to_i - 1
@@ -42,47 +44,7 @@ module Sinatra
               client.chat_postMessage(channel: event.channel, text: "I have deleted #{all_contacts[input_index].name}. Type 'add' to create a new contact", as_user: true )
         return true
 
-      
-      # ------------------------------------------------------------------------
-      # =>   NOTES FROM ELIJAH ON ENABLING SESSIONS
-      # ------------------------------------------------------------------------
-      
-         # session variable set to nil?
-         # set session variable to editing mode
-         # set session variable at end of elsif block, then it can be reused.
-         
-         # ------------------------------------------------------------------------
-         # =>   SWARNA'S CODE
-         # ------------------------------------------------------------------------
-         
-       # elsif event.formatted_text.starts_with? "edit"
-       #   # we want to take the edit part away
-       #   # and then the rest we want to use for editing
-       #   input  = event.formatted_text.gsub( "edit", "" ).strip
-       #   input_words = input.split
-       #   input_index = input_words[0].to_i - 1
-       #   input_words.shift
-       #   input_words.shift
-       #   grocery_string = input_words.join(" ")
-       #   all_items = GroceryList.order(:id)
-       #   all_items[input_index].item_name = grocery_string
-       #   all_items[input_index].save
-       #   #display edited list
-       #   grocery_list = ""
-       #   edited_list = GroceryList.order(:id)
-       #   edited_list.each_with_index do |item, index|
-       #   grocery_list += "#{ index+ 1 }. #{ item.item_name } \n"
-       #   end
-       #   client.chat_postMessage(channel: event.channel, text: "\nSure, I made the edit! *Your grocery list now looks like this:*\n" + grocery_list  , as_user: true )
-       #
-       # return true
-       
-       # ------------------------------------------------------------------------
-       # =>   SWARNA'S CODE
-       # ------------------------------------------------------------------------
-       
-     #client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
-     #  # Delete all
+     # Delete all
      elsif event.formatted_text == "delete all"
          client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type 'yes delete all' to delete your entire contact list. Type 'wait no' to cancel", as_user: true)
 
@@ -100,7 +62,7 @@ module Sinatra
 
        return true
 
-     #  # Delete specific item
+
      #
      #  # Edit specific item
 
@@ -135,6 +97,54 @@ end
 
 
 
+
+
+
+
+
+
+
+
+ 
+ # ------------------------------------------------------------------------
+ # =>   NOTES FROM ELIJAH ON ENABLING SESSIONS
+ # ------------------------------------------------------------------------
+ 
+    # session variable set to nil?
+    # set session variable to editing mode
+    # set session variable at end of elsif block, then it can be reused.
+    
+    # ------------------------------------------------------------------------
+    # =>   SWARNA'S CODE
+    # ------------------------------------------------------------------------
+    
+  # elsif event.formatted_text.starts_with? "edit"
+  #   # we want to take the edit part away
+  #   # and then the rest we want to use for editing
+  #   input  = event.formatted_text.gsub( "edit", "" ).strip
+  #   input_words = input.split
+  #   input_index = input_words[0].to_i - 1
+  #   input_words.shift
+  #   input_words.shift
+  #   grocery_string = input_words.join(" ")
+  #   all_items = GroceryList.order(:id)
+  #   all_items[input_index].item_name = grocery_string
+  #   all_items[input_index].save
+  #   #display edited list
+  #   grocery_list = ""
+  #   edited_list = GroceryList.order(:id)
+  #   edited_list.each_with_index do |item, index|
+  #   grocery_list += "#{ index+ 1 }. #{ item.item_name } \n"
+  #   end
+  #   client.chat_postMessage(channel: event.channel, text: "\nSure, I made the edit! *Your grocery list now looks like this:*\n" + grocery_list  , as_user: true )
+  #
+  # return true
+  
+  # ------------------------------------------------------------------------
+  # =>   SWARNA'S CODE
+  # ------------------------------------------------------------------------
+  
+#client.chat_postMessage(channel: event.channel, text: "You can also delete the entire list of contacts by typing `delete all`.", as_user: true)
 
 # ------------------------------------------------------------------------
 # =>   FAILED EDIT ATTEMPT
