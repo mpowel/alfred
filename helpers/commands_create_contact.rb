@@ -108,9 +108,9 @@ module Sinatra
     # ------------------------------------------------------------------------
 
   
-    def is_phone_number int
-      return int.match( ((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4} )
-    end
+    # def is_phone_number int
+    #   return int.match( ((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4} )
+    # end
   
     
     def is_email_address str
