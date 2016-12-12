@@ -16,13 +16,13 @@ module Sinatra
 
       # Hi Commands
       if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }
-        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. Would you like to create a new contact? Type 'yes' or no'.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. You can 'view' your list of contacts or 'add' someone new. Would you like to create a new contact? Type 'yes' or 'not now'.", as_user: true)
         return true
         
       elsif event.formatted_text == "yes"
               client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
               return true
-      elsif event.formatted_text == "no"
+      elsif event.formatted_text == "not now"
               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type 'help' to see what else I can help with (forewarning, it's not much at the present time)", as_user: true)
         return true
 

@@ -46,7 +46,7 @@ module Sinatra
 
      # Delete all
      elsif event.formatted_text == "delete all"
-         client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type 'yes delete all' to delete your entire contact list. Type 'wait no' to cancel", as_user: true)
+         client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type 'yes delete all' to delete your entire contact list. Type 'nooo' to cancel", as_user: true)
 
        return true
        
@@ -57,7 +57,7 @@ module Sinatra
 
        return true
 
-     elsif event.formatted_text.include? "no"
+     elsif event.formatted_text == "nooo"
          client.chat_postMessage(channel: event.channel, text: "Phew, that was a close one. Your database was left intact", as_user: true)
 
        return true
