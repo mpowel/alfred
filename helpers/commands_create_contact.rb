@@ -89,7 +89,6 @@ module Sinatra
           contact = Contact.all.last
           contact.phone = contact_number.to_i
           contact.save!
-
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
           client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type `view`. To add another contact, type `add` and then the first and last name.", as_user: true)
           return true
