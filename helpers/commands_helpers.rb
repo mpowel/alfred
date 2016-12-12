@@ -18,16 +18,15 @@ module Sinatra
          client.chat_postMessage(channel: event.channel, text: get_thanks, as_user: true)
       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
-       
-       if event.formatted_text.include? "bye"
+  
+      elsif event.formatted_text.include? "bye"
           client.chat_postMessage(channel: event.channel, text: good_bye, as_user: true)
         return true
 
-       #  if event.formatted_text.include? "mother"
+       #  elsif event.formatted_text.include? "mother"
        #     client.chat_postMessage(channel: event.channel, text: "No, no, no. Nothing. I said nothing.", as_user: true)
        #  # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        #   return true
-         
       else
        return false
       end
@@ -41,11 +40,11 @@ module Sinatra
 
     THANKS = ["You’re quite welcome.", "My pleasure.", "Happy to help.", "Anytime.", "That’s what I’m here for."]
     
-    TOODLES = ["Cheerio.", "Farewell then.", "Ciao bella.", "Toodles!", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
-    
     def get_thanks
         return THANKS.sample
     end
+    
+    TOODLES = ["Cheerio.", "Farewell then.", "Ciao bella.", "Toodles!", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
     
     def good_bye
         return TOODLES.sample

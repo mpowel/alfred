@@ -26,6 +26,7 @@ module Sinatra
           client.chat_postMessage(channel: event.channel, text: "Very well. I'll remind you to email Jeeves in 3 days", as_user: true)
           client.chat_postMessage(channel: event.channel, text: "You mentioned once he can be quite ornary, so be sure to use pleasantries.", as_user: true)
         return true
+         
 
       else
        return false
@@ -37,7 +38,6 @@ module Sinatra
     # ------------------------------------------------------------------------
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
-    
     
     def get_user_name client, event
       # calls users_info on slack
