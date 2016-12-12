@@ -1,4 +1,5 @@
 To Dos:
+ - Check how many discoveries I've posted IMPORTANT
  - simulate contextio with hard coding  "when was the last time I interacted with Alfred Pennyworth?"
  - display email, phone and title
  - add button to 'delete all' and initial 'hi'
