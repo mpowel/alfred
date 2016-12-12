@@ -22,7 +22,7 @@ He's a cheaky one, though, so when you say `hi` you'll notice he's already promi
 ### Alfred's Commands
 
 **Alfred Pennyworth's Training Schedule**
-![prioritymatrix](prioritymatrix.png)
+![prioritymatrix](guide/prioritymatrix.png)
 
 #### Functioning Commands
 Command | Description
@@ -46,14 +46,14 @@ Command | Description
 `what did you say about my mother?` | If Alfred mentions your mother, try typing `what did you say about my mother?`. Type exact phrase.
 
 ###Data Schemas
-![dataschema](dataschema.png)
+![dataschema](guide/dataschema.png)
 
 #Alfred Bot Workflows
-![workflow](completeworkflow.png)
-![mvpworkflow](mvpworkflow.png)
+![workflow](guide/completeworkflow.png)
+![mvpworkflow](guide/mvpworkflow.png)
 
 #Sample Interaction
-![sampleinteraction](sampleinteraction.png)
+![sampleinteraction](guide/sampleinteraction.png)
 
  
 
