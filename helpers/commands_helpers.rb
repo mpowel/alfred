@@ -52,6 +52,7 @@ module Sinatra
                   "author_name": "Trabek",
                   "text": "",
                   "image_url": "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg",
+                  "ts": 123456789
               }
           ]
       }.to_json
