@@ -16,7 +16,7 @@ module Sinatra
 
       if event.formatted_text.include? "help"
         client.chat_postMessage(channel: event.channel, text: "Nobody can help you now.", as_user: true)
-        client.chat_postMessage(channel: event.channel, text: "Just kidding! Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "I'm only having a laugh. Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
         client.chat_postMessage(channel: event.channel, text: "If you've had enough of me, you can also `dismiss` me.", as_user: true)
 
        return true
@@ -33,6 +33,7 @@ module Sinatra
             
             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.\n" + contact  , as_user: true )
             client.chat_postMessage(channel: event.channel, text: "Type `delete contact` followed by a number to delete a contact from this list.\n"  , as_user: true )
+            client.chat_postMessage(channel: event.channel, text: "Type `add` plus the First and Last name to add a new contact to the list.\n"  , as_user: true )
        
         return true
         

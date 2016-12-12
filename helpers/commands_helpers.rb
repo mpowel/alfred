@@ -19,7 +19,8 @@ module Sinatra
       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
   
-      elsif event.formatted_text.include? "bye"
+      elsif ["dismiss", "bye", "goodbye", "good bye"].any? { |gb| event.formatted_text.starts_with? gb }   
+        #event.formatted_text.include? "bye"
           client.chat_postMessage(channel: event.channel, text: good_bye, as_user: true)
         return true
 
@@ -46,7 +47,7 @@ module Sinatra
         return THANKS.sample
     end
     
-    TOODLES = ["Cheerio.", "Farewell then.", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
+    TOODLES = ["Cheerio.", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
     
     def good_bye
         return TOODLES.sample
