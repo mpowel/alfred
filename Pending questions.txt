@@ -6,7 +6,10 @@ To Dos:
  - add all commands to initial welcome and help
 
 
-
+contact_last = event.formatted_text.split( “ ").last
+items.split( "," ).each do |num|
+        i= (num.to_i)-1
+        all_items[i].destroy
 
 
 Connect etanproject.org@gmail.com to contextio API
