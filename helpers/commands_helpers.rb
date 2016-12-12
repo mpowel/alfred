@@ -18,12 +18,12 @@ module Sinatra
          client.chat_postMessage(channel: event.channel, text: get_thanks, as_user: true)
       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
-## How do I generate a random list of thank yous?      
 
-#         # Handle the Help commands
-#       elsif event.formatted_text.include? "help"
-#         client.chat_postMessage(channel: event.channel, text: "I can store contacts in my database. Would you like to create a new contact? Type 'yes' or no'.", as_user: true)
-#
+      elsif event.formatted_text.starts_with? "team"
+          client.chat_postMessage(channel: event.channel, text: "#{contact.team_id}" , as_user: true)
+       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
+        return true
+
 #Later I want to add  "and soon will be able to track interactions with the email account etanproject.org@gmail.com"
 
       # # add additional commands here...
