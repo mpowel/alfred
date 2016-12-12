@@ -15,7 +15,7 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
 
       if event.formatted_text.include? "help"
-        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now. Just kidding! Try typing 'add', 'view', or 'when'.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now. Just kidding! Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
 
        return true
 
