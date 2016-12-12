@@ -13,14 +13,14 @@ Contact.create!([{
     phone: "1235551212",
   }])
 Contact.create!([{
-    name: "Edwin Jarvis".
+    name: "Edwin Jarvis",
     gender: "male",
     title: "Butler",
     email: "jarvis@botler.com",
     phone: "1235551212",
   }])
 Contact.create!([{
-    name: "Geoffrey Butler".
+    name: "Geoffrey Butler",
     gender: "male",
     title: "Butler",
     email: "geoffrey@botler.com",
