@@ -55,7 +55,7 @@ module Sinatra
                   "ts": 123456789
               }
           ]
-      }.to_json
+      }
     end
 
     THANKS = ["You’re quite welcome.", "My pleasure.", "Happy to help.", "Anytime.", "That’s what I’m here for."]
