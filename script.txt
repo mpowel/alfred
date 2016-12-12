@@ -1,0 +1,27 @@
+Hi there!
+
+Add or list
+
+list
+
+add
+name
+gender
+email
+phone
+
+view
+delete
+
+prompt for when and 
+
+
+Bye!
+I said bye.
+Good bye.
+What did you say about my mother?
+
+
+Alfred the Botler is based on Batman's british butler Alfred Pennyworth. Alfred the Botler is highly educated, but as a bot can be a bit simple. He's learning his new role and soon will be up in tip top shape.
+
+As far as his character, he is extremely polished and well behaved, but at times he becomes quite the snarky bastard and his remarks will get a bit off colored. You'll have to watch out for him.

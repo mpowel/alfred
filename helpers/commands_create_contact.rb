@@ -23,7 +23,7 @@ module Sinatra
               client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
               return true
       elsif event.formatted_text == "no"
-              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
+              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type 'help' to see what else I can help with (forewarning, it's not much at the present time)", as_user: true)
         return true
 
       # Add New Commands 
