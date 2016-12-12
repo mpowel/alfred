@@ -29,10 +29,8 @@ Compose | Compose and email from within Slack. It's not clear from the documenta
 
 ### Alfred's Commands
 
-**Alfred the Botler Priority Matrix**
-![prioritymatrix](guide/prioritymatrix.png)
-
 #### Functioning Commands
+
 Command | Description
 ------------ | -------------
 `add` | Type `add` and Alfred will guide you through the process of adding a new contact.
@@ -47,6 +45,7 @@ Command | Description
 
 #### Hardcoded Commands
 The following commands are hard coded and must be typed exactly as they appear below.
+
 Command | Description
 ------------ | -------------
 `When did I last contact Alfred?` | Only programmed for Alfred. Type exact phrase as it appears to the left.
@@ -54,15 +53,14 @@ Command | Description
 `Set reminder` | Only programmed in response to above query about Jeeves.
 `What did you say about my mother?` | If Alfred mentions your mother, try typing `what did you say about my mother?`. Type exact phrase.
 
-###Data Schemas
+
 ![dataschema](guide/dataschema.png)
 
-#Alfred Bot Workflows
-![workflow](guide/completeworkflow.png)
 ![mvpworkflow](guide/mvpworkflow.png)
 
-#Sample Interaction
 ![sampleinteraction](guide/sampleinteraction.png)
+
+![prioritymatrix](guide/prioritymatrix.png)
 
  
 
