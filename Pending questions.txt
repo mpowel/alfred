@@ -35,7 +35,6 @@ Possible errors:
 
 
 To Dos:
-Figure out how to display a table of contact_id and name
 Connect etanproject.org@gmail.com to contextio API
 Create helper file with all contextio commands
 Figure out how to edit existing table (build out that functionality)
@@ -46,7 +45,7 @@ Figured out how to link a new helper file to the app
 	Define new function
 	Ddd function to bottom of app
 	Add helpers Sinatra::CommandsCreateContact to top of app
-	
+Figure out how to display a table of contact_id and name	
 Phone Validation
 https://github.com/tejasmanohar/timgur/blob/master/app.rb
    what is Orchestrate::Application?

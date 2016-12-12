@@ -15,7 +15,8 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
         
       if event.formatted_text.starts_with? "thank"
-      client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
+         client.chat_postMessage(channel: event.channel, text: get_thanks, as_user: true)
+      # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
 ## How do I generate a random list of thank yous?      
 
@@ -43,6 +44,11 @@ module Sinatra
     # =>   GETS USEFUL INFO FROM SLACK
     # ------------------------------------------------------------------------
     
+    THANKS = ["You’re quite welcome.", "My pleasure.", "Happy to help.", "Anytime.", "That’s what I’m here for."]
+
+    def get_thanks
+        return THANKS.sample
+      end
     
     def get_user_name client, event
       # calls users_info on slack

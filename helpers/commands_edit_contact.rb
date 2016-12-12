@@ -30,9 +30,7 @@ module Sinatra
             
             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.\n" + contact  , as_user: true )
             client.chat_postMessage(channel: event.channel, text: "Type 'delete contact' followed by a number to delete a contact from this list.\n"  , as_user: true )
-            # client.chat_postMessage(channel: event.channel, text: "To edit a contact type something similar to: edit 1 change email to test@example.com. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
-     #client.chat_postMessage(channel: event.channel, text: "or you can type `add' followed by first and last name to add a new contact.", as_user: true)
-           # client.chat_postMessage(channel: event.channel, text: "Who and what would you like to edit? To edit the first person's email type 'edit 1 change email to test@example.com'. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
+       
         return true
         
         elsif event.formatted_text.starts_with? "delete contact"
@@ -142,6 +140,12 @@ end
 # =>   FAILED EDIT ATTEMPT
 # ------------------------------------------------------------------------
 
+
+       # client.chat_postMessage(channel: event.channel, text: "To edit a contact type something similar to: edit 1 change email to test@example.com. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
+#client.chat_postMessage(channel: event.channel, text: "or you can type `add' followed by first and last name to add a new contact.", as_user: true)
+      # client.chat_postMessage(channel: event.channel, text: "Who and what would you like to edit? To edit the first person's email type 'edit 1 change email to test@example.com'. You can edit the 'name', 'email', 'gender', and 'phone'", as_user: true)
+      
+      
        # elsif event.formatted_text == "edit"
        #   client.chat_postMessage(channel: event.channel, text: "I'd be happy to edit a contact. Type 'view' to see a complete list of contacts.", as_user: true)
        #   client.chat_postMessage(channel: event.channel, text: "Or if you already know the contact you'd like to update, type 'update contact' number then 'name', 'email', 'gender', or 'phone' followed by the new information.", as_user: true)
