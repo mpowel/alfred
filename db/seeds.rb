@@ -81,7 +81,6 @@ Contact.create([{
     title: "Butler",
     email: "youthere@botler.com",
     phone: "1235551212",
-  },
   }])
 
 
