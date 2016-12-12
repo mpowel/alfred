@@ -15,21 +15,23 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
 
       # Hi Commands
-      if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }
-        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. You can `view` your list of contacts or `add` someone new. Would you like to create a new contact? Type `yes` or `not now`.", as_user: true)
+      if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }   
+        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I monitor activity in your email account etanproject.org@gmail.com and keep track of all your important contacts. You can `view` your current list of contacts or `add` someone new.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "What would you like to do first? Type `add`, `view`, or `help` for more options.", as_user: true)
         return true
         
-      elsif event.formatted_text == "yes"
-              client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
-              return true
-      elsif ["no", "not now", "no thanks"].any? { |n| event.formatted_text.starts_with? n }
-        #event.formatted_text == "not now"
-              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type `help` to see what else I can help with.", as_user: true)
-        return true
+      # removed prompts for `yes` and `no`
+      # elsif event.formatted_text == "yes"
+      #         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
+      #         return true
+      # elsif ["no", "not now", "no thanks"].any? { |n| event.formatted_text.starts_with? n }
+      #   #event.formatted_text == "not now"
+      #         client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type `help` to see what else I can help with.", as_user: true)
+      #   return true
 
       # Add New Commands 
       elsif event.formatted_text == "add"
-        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add` and then the First and Last name.", as_user: true)
 
         return true
         
@@ -40,7 +42,7 @@ module Sinatra
 
         client.chat_postMessage(channel: event.channel, text: "I've added _#{ contact.name }_ for you. ", as_user: true)
         client.chat_postMessage(channel: event.channel, text: "What is _#{ contact.name }_'s gender? Are the a `male` or a `female`. ", as_user: true)
-
+        client.chat_postMessage(channel: event.channel, text: "You can type `skip` at any point to `skip`.", as_user: true)
         return true
 
       # Gender Commands  
@@ -91,6 +93,14 @@ module Sinatra
           contact.save!
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
           client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type `view`. To add another contact, type `add` and then the first and last name.", as_user: true)
+          return true
+          
+        elsif event.formatted_text.starts_with? "skip"
+          contact = Contact.all.last
+          client.chat_postMessage(channel: event.channel, text: "Let's speed things up a bit.", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "To update #{ contact.name }'s gender, type `male` or `female`", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "To update #{ contact.name }'s email, simple type their email address.", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "To update #{ contact.name }'s phone number, simple type `phone` followed by the 10 digit number (numbers only, no `-` or `( )`).", as_user: true)
           return true
 #         # add additional commands here...
       

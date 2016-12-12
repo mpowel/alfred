@@ -3,7 +3,8 @@ To Dos:
  - display email, phone and title
  - add button to 'delete all' and initial 'hi'
  - add title to workflow
- - skip command will show prompt for all commands
+ - add email to fake contextio helper
+ - skip command will show prompt for all commands   DONE
  - add all commands to initial welcome and help
 
 

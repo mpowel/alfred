@@ -17,6 +17,7 @@ module Sinatra
       if event.formatted_text.include? "help"
         client.chat_postMessage(channel: event.channel, text: "Nobody can help you now.", as_user: true)
         client.chat_postMessage(channel: event.channel, text: "Just kidding! Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "If you've had enough of me, you can also `dismiss` me.", as_user: true)
 
        return true
 
@@ -58,7 +59,8 @@ module Sinatra
 
        return true
 
-     elsif event.formatted_text == "nooo"
+     elsif ["nooo", "no", "noo"].any? { |n| event.formatted_text.starts_with? n }   
+       #event.formatted_text == "nooo"
          client.chat_postMessage(channel: event.channel, text: "Phew, that was a close one. Your database was left intact", as_user: true)
 
        return true
