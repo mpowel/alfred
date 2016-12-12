@@ -40,14 +40,15 @@ module Sinatra
     # ------------------------------------------------------------------------
 
     THANKS = ["You’re quite welcome.", "My pleasure.", "Happy to help.", "Anytime.", "That’s what I’m here for."]
-    BYE = ["Cheerio.", "Farewell then.", "Ciao bella.", "Toodles!", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
+    
+    TOODLES = ["Cheerio.", "Farewell then.", "Ciao bella.", "Toodles!", "Tata for now.", "Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
     
     def get_thanks
         return THANKS.sample
     end
     
     def good_bye
-        return BYE.sample
+        return TOODLES.sample
     end
 
     # BYE = ["Adios motha sucka.", "Cheerio.", "Farewell then.", "Ciao bella.", "Toodles!", "Tata for now, sweetheart.","Hasta la vista, baby", "Take care, dollface. Send your mother my regards."]
