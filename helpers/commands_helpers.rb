@@ -19,13 +19,13 @@ module Sinatra
       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
   
-      elsif ["dismiss", "bye", "goodbye", "good bye"].any? { |gb| event.formatted_text.starts_with? gb }   
+      elsif ["dismiss", "dismissed", "bye", "goodbye", "good bye"].any? { |gb| event.formatted_text.starts_with? gb }   
         #event.formatted_text.include? "bye"
           client.chat_postMessage(channel: event.channel, text: good_bye, as_user: true)
         return true
 
         elsif event.formatted_text.include? "mother"
-#           client.chat_postMessage(channel: event.channel, text: "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg", unfurl_link: true, as_user: true)
+           client.chat_postMessage(channel: event.channel, text: "http://www2.pictures.zimbio.com/mp/GWnfFL2ID3Fl.jpg", unfurl_link: true, as_user: true)
            client.chat_postMessage(channel: event.channel, text: "Oh nothing... I said nothing. Bye now!", as_user: true)
         # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
          return true
