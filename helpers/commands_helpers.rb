@@ -19,26 +19,6 @@ module Sinatra
       # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
        return true
 
-      # elsif event.formatted_text.starts_with? "team"
-      #   team_list = Contact.all
-      #   show_teams = ""
-      #   team_list.each_with_index do |i, index|
-      #   show_teams += "#{ index+ 1 }. #{ i.team_id } \n"
-      #   end
-      #
-      #   client.chat_postMessage(channel: event.channel, text: show_teams , as_user: true)
-      #  # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
-      #   return true
-        
-        #Later I want to add  "and soon will be able to track interactions with the email account etanproject.org@gmail.com"
-
-      # # add additional commands here...
-                             
-      # else
-      #   # ERROR Commands
-      #   # not understood or an error
-      #   client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
-      #
       else
        return false
       end
@@ -71,3 +51,29 @@ module Sinatra
   end
   
 end
+
+
+# ------------------------------------------------------------------------
+# =>   CODE NOT USED
+# ------------------------------------------------------------------------
+
+# elsif event.formatted_text.starts_with? "team"
+#   team_list = Contact.all
+#   show_teams = ""
+#   team_list.each_with_index do |i, index|
+#   show_teams += "#{ index+ 1 }. #{ i.team_id } \n"
+#   end
+#
+#   client.chat_postMessage(channel: event.channel, text: show_teams , as_user: true)
+#  # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
+#   return true
+  
+  #Later I want to add  "and soon will be able to track interactions with the email account etanproject.org@gmail.com"
+
+# # add additional commands here...
+                       
+# else
+#   # ERROR Commands
+#   # not understood or an error
+#   client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
+#

@@ -25,7 +25,8 @@ module Sinatra
       elsif event.formatted_text == "no"
               client.chat_postMessage(channel: event.channel, text: "Ok, maybe later.", as_user: true)
         return true
-        
+
+      # Add New Commands 
       elsif event.formatted_text == "add"
         client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
 
@@ -40,7 +41,8 @@ module Sinatra
         client.chat_postMessage(channel: event.channel, text: "What is _#{ contact.name }_'s gender? Are the a `male` or a `female`. ", as_user: true)
 
         return true
-        
+
+      # Gender Commands  
       elsif event.formatted_text.starts_with? "male"
 
         contact = Contact.all.last
@@ -63,6 +65,7 @@ module Sinatra
 
         return true
         
+      # Email Commands     
       elsif is_email_address event.formatted_text
 
         contact = Contact.all.last
@@ -78,6 +81,7 @@ module Sinatra
         end
         return true
 
+        # Phone Commands 
         elsif event.formatted_text.starts_with? "phone"
           contact_number = event.formatted_text.gsub( "phone", "" ).strip  
           
