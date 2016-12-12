@@ -20,11 +20,17 @@ module Sinatra
        return true
 
       elsif event.formatted_text.starts_with? "team"
-          client.chat_postMessage(channel: event.channel, text: "#{contact.team_id}" , as_user: true)
+        team_list = Contact.all
+        show_teams = ""
+        team_list.each_with_index do |i, index|
+        show_teams += "#{ index+ 1 }. #{ i.team_id } \n"
+        end
+        
+        client.chat_postMessage(channel: event.channel, text: show_teams , as_user: true)
        # client.chat_postMessage(channel: event.channel, text: "You're very welcome.", as_user: true)
         return true
-
-#Later I want to add  "and soon will be able to track interactions with the email account etanproject.org@gmail.com"
+        
+        #Later I want to add  "and soon will be able to track interactions with the email account etanproject.org@gmail.com"
 
       # # add additional commands here...
                              
