@@ -1,9 +1,10 @@
+# Contact.create( name: "Alfred Pennyworth", gender: "male", title: "Butler", email: "alfred@botler.com", phone: "1235551212" )
 Contact.create([{
     name: "Alfred Pennyworth",
     gender: "male",
     title: "Butler",
     email: "alfred@botler.com",
-    phone: "1235551212",
+    phone: "1235551212"
     }])
     
     
