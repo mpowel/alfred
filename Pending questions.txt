@@ -2,6 +2,7 @@ To Dos:
  - Check how many discoveries I've posted IMPORTANT
  - REMOVED EXTRA FILES FROM FINAL DELIVERABLE IMPORTANT
  - UPDATE WORKFLOW WITH NEW TEXT & TAKE SCREEN SHOTS OF SAMPLE UI 
+ - Adjust sizing on sketch file text
  - simulate contextio with hard coding  "when was the last time I interacted with Alfred Pennyworth?"
  - display email, phone and title
  - add button to 'delete all' and initial 'hi'
