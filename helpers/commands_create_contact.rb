@@ -16,14 +16,15 @@ module Sinatra
 
       # Hi Commands
       if ["hi", "hey", "hello"].any? { |a| event.formatted_text.starts_with? a }
-        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. You can 'view' your list of contacts or 'add' someone new. Would you like to create a new contact? Type 'yes' or 'not now'.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "I'm Alfred, your personal contact management bot. I can keep track of your important contacts. You can `view` your list of contacts or `add` someone new. Would you like to create a new contact? Type `yes` or `not now`.", as_user: true)
         return true
         
       elsif event.formatted_text == "yes"
               client.chat_postMessage(channel: event.channel, text: "Who would you like to add? Type `add [name]` and I'll add them for you.", as_user: true)
               return true
-      elsif event.formatted_text == "not now"
-              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type 'help' to see what else I can help with.", as_user: true)
+      elsif ["no", "not now", "no thanks"].any? { |n| event.formatted_text.starts_with? n }
+        #event.formatted_text == "not now"
+              client.chat_postMessage(channel: event.channel, text: "Ok, maybe later. You can type `help` to see what else I can help with.", as_user: true)
         return true
 
       # Add New Commands 
@@ -75,9 +76,9 @@ module Sinatra
         client.chat_postMessage(channel: event.channel, text: "I've associated the email `#{contact.email}` with _#{ contact.name }_. ", as_user: true)
         
         if contact.gender == "male"
-          client.chat_postMessage(channel: event.channel, text: "What's his phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "What's his phone number? Type `phone` followed by the 10 digit number.", as_user: true)
         else
-          client.chat_postMessage(channel: event.channel, text: "What's her phone number? Type 'phone' followed by the 10 digit number.", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "What's her phone number? Type `phone` followed by the 10 digit number.", as_user: true)
         end
         return true
 
@@ -90,12 +91,12 @@ module Sinatra
           contact.save!
 
           client.chat_postMessage(channel: event.channel, text: "I've updated _#{ contact.name }_'s phone number as #{contact.phone}.", as_user: true)
-          client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type 'view'. To add another contact, type 'add' and then the first and last name.", as_user: true)
+          client.chat_postMessage(channel: event.channel, text: "What would you like to do next? To view your contacts, type `view`. To add another contact, type `add` and then the first and last name.", as_user: true)
           return true
 #         # add additional commands here...
       
       else
-        client.chat_postMessage(channel: event.channel, text: "I didn't get that. If you're stuck, type `help` to find my commands.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Terribly sorry, 'ol chap. I don't understand the youth these days. Type `help` and we'll get this sorted out.", as_user: true)
        return true
       end
 

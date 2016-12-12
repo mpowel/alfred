@@ -15,7 +15,8 @@ module Sinatra
       is_admin = is_admin_or_owner client, event
 
       if event.formatted_text.include? "help"
-        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now. Just kidding! Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Nobody can help you now.", as_user: true)
+        client.chat_postMessage(channel: event.channel, text: "Just kidding! Try typing `add`, `view`, or `when did I last contact Alfred?`.", as_user: true)
 
        return true
 
@@ -30,7 +31,7 @@ module Sinatra
             end
             
             client.chat_postMessage(channel: event.channel, text: "Here are all your contacts.\n" + contact  , as_user: true )
-            client.chat_postMessage(channel: event.channel, text: "Type 'delete contact' followed by a number to delete a contact from this list.\n"  , as_user: true )
+            client.chat_postMessage(channel: event.channel, text: "Type `delete contact` followed by a number to delete a contact from this list.\n"  , as_user: true )
        
         return true
         
@@ -46,7 +47,7 @@ module Sinatra
 
      # Delete all
      elsif event.formatted_text == "delete all"
-         client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type 'yes delete all' to delete your entire contact list. Type 'nooo' to cancel", as_user: true)
+         client.chat_postMessage(channel: event.channel, text: "Are you sure you want to delete all contacts? Type `yes delete all` to delete your entire contact list. Type `nooo` to cancel", as_user: true)
 
        return true
        
